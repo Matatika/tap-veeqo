@@ -4,39 +4,43 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
-<!--
+## Overview
 
-Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
+`tap-veeqo` extracts raw data from the [Veeqo API](https://developer.veeqo.com/docs) for the following resources:
+- [Orders](https://developer.veeqo.com/docs#/reference/orders)
+- [Products](https://developer.veeqo.com/docs#/reference/products)
+- [Purchase Orders](https://developer.veeqo.com/docs#/reference/purchase-orders)
+- [Suppliers](https://developer.veeqo.com/docs#/reference/suppliers)
+- [Warehouses](https://developer.veeqo.com/docs#/reference/warehouses)
+- [Customers](https://developer.veeqo.com/docs#/reference/customers)
+- [Stores](https://developer.veeqo.com/docs#/reference/stores)
+- [Delivery Methods](https://developer.veeqo.com/docs#/reference/delivery-methods)
+- [Tags](https://developer.veeqo.com/docs#/reference/tags)
+- Employees
+- Product Brands
+- Product Tags
+- Sellables
 
 ## Installation
 
-Install from PyPi:
-
 ```bash
-pipx install tap-veeqo
+# pip
+pip install git+https://github.com/Matatika/tap-veeqo
+
+# pipx
+pipx install git+https://github.com/Matatika/tap-veeqo
+
+# poetry
+poetry add git+https://github.com/Matatika/tap-veeqo
 ```
-
-Install from GitHub:
-
-```bash
-pipx install git+https://github.com/ORG_NAME/tap-veeqo.git@main
-```
-
--->
 
 ## Configuration
 
 ### Accepted Config Options
 
-<!--
-Developer TODO: Provide a list of config options accepted by the tap.
-
-This section can be created by copy-pasting the CLI output from:
-
-```
-tap-veeqo --about --format=markdown
-```
--->
+Name | Required | Default | Description
+--- | --- | --- | ---
+`api_key` | Yes |  | Your user API key
 
 A full list of supported settings and capabilities for this
 tap is available by running:
@@ -53,9 +57,10 @@ environment variable is set either in the terminal context or in the `.env` file
 
 ### Source Authentication and Authorization
 
-<!--
-Developer TODO: If your tap requires special access on the source system, or any special authentication requirements, provide those here.
--->
+Before using `tap-veeqo`, you will need to [generate an API key](https://developer.veeqo.com/docs#/introduction/authentication/generating-your-api-keys) for the Veeqo user you want to authenticate as.
+
+#### User roles
+There is currently no documentation on how [Veeqo user roles](https://help.veeqo.com/en/articles/6969529-users-overview#h_78cc6b5a1d) affect API access. This tap was developed and tested using a test user with the `Admin` role, for which all resources are accessible - your milage may vary with other roles.
 
 ## Usage
 
@@ -99,12 +104,6 @@ poetry run tap-veeqo --help
 
 _**Note:** This tap will work in any Singer environment and does not require Meltano.
 Examples here are for convenience and to streamline end-to-end orchestration scenarios._
-
-<!--
-Developer TODO:
-Your project comes with a custom `meltano.yml` project file already created. Open the `meltano.yml` and follow any "TODO" items listed in
-the file.
--->
 
 Next, install Meltano (if you haven't already) and any needed plugins:
 
