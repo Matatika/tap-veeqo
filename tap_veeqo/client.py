@@ -28,7 +28,14 @@ class VeeqoStream(RESTStream):
         return VeeqoPaginator(self.page_size)
 
     def get_url_params(self, context, next_page_token):
-        return {
+        params = {
             "page_size": self.page_size,
             "page": next_page_token,
         }
+
+        last_updated = self.get_context_state(context).get("replication_key_value")
+
+        if last_updated and next_page_token == 1:
+            params["updated_at_min"] = last_updated
+
+        return params

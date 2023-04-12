@@ -5,8 +5,23 @@ from __future__ import annotations
 from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
-# TODO: Import your custom stream types here:
 from tap_veeqo import streams
+
+STREAM_TYPES = [
+    streams.CustomersStream,
+    streams.DeliveryMethodsStream,
+    streams.EmployeesStream,
+    streams.OrdersStream,
+    streams.ProductsStream,
+    streams.ProductBrandsStream,
+    streams.ProductTagsStream,
+    streams.PurchaseOrdersStream,
+    streams.SellablesStream,
+    streams.StoresStream,
+    streams.SuppliersStream,
+    streams.TagsStream,
+    streams.WarehousesStream,
+]
 
 
 class TapVeeqo(Tap):
@@ -24,16 +39,8 @@ class TapVeeqo(Tap):
         ),
     ).to_dict()
 
-    def discover_streams(self) -> list[streams.VeeqoStream]:
-        """Return a list of discovered streams.
-
-        Returns:
-            A list of discovered streams.
-        """
-        return [
-            streams.GroupsStream(self),
-            streams.UsersStream(self),
-        ]
+    def discover_streams(self):
+        return [stream_class(tap=self) for stream_class in STREAM_TYPES]
 
 
 if __name__ == "__main__":
