@@ -1,22 +1,16 @@
-from singer_sdk.typing import (
-    DateTimeType,
-    IntegerType,
-    PropertiesList,
-    Property,
-    StringType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject
 
 
 class DeliveryMethodObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("cost", StringType),
-        Property("name", StringType),
-        Property("user_id", IntegerType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("deleted_at", DateTimeType),
-        Property("deleted_by_id", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("cost", th.StringType),
+        th.Property("name", th.StringType),
+        th.Property("user_id", th.IntegerType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("deleted_at", th.DateTimeType),
+        th.Property("deleted_by_id", th.IntegerType),
     )

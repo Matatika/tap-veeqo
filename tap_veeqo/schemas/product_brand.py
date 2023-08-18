@@ -1,12 +1,12 @@
-from singer_sdk.typing import IntegerType, PropertiesList, Property, StringType
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject
 
 
 class ProductBrandObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("name", StringType),
-        Property("display_position", IntegerType),
-        Property("products_count", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("name", th.StringType),
+        th.Property("display_position", th.IntegerType),
+        th.Property("products_count", th.IntegerType),
     )

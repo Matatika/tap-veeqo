@@ -1,17 +1,11 @@
-from singer_sdk.typing import (
-    EmailType,
-    IntegerType,
-    PropertiesList,
-    Property,
-    StringType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject
 
 
 class UserObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("name", StringType),
-        Property("email", EmailType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("name", th.StringType),
+        th.Property("email", th.EmailType),
     )

@@ -1,100 +1,91 @@
-from singer_sdk.typing import (
-    ArrayType,
-    BooleanType,
-    DateTimeType,
-    EmailType,
-    IntegerType,
-    PropertiesList,
-    Property,
-    StringType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject
 
 
 class _PermissionsObject(CustomObject):
-    properties = PropertiesList(
-        Property("rules", BooleanType),
-        Property("accounts", BooleanType),
-        Property("invoices", BooleanType),
-        Property("customers", BooleanType),
-        Property("edit_users", BooleanType),
-        Property("share_views", BooleanType),
-        Property("edit_channels", BooleanType),
-        Property("custom_reports", BooleanType),
-        Property("delete_product", BooleanType),
-        Property("manage_billing", BooleanType),
-        Property("edit_cost_price", BooleanType),
-        Property("edit_warehouses", BooleanType),
-        Property("email_templates", BooleanType),
-        Property("manage_listings", BooleanType),
-        Property("manage_shipping", BooleanType),
-        Property("manage_suppliers", BooleanType),
-        Property("view_team_report", BooleanType),
-        Property("view_sales_report", BooleanType),
-        Property("edit_product_price", BooleanType),
-        Property("share_custom_views", BooleanType),
-        Property("edit_product_images", BooleanType),
-        Property("view_product_report", BooleanType),
-        Property("view_forecast_report", BooleanType),
-        Property("view_shipping_report", BooleanType),
-        Property("create_order_payments", BooleanType),
-        Property("edit_delivery_methods", BooleanType),
-        Property("manage_picking_queues", BooleanType),
-        Property("picking_configuration", BooleanType),
-        Property("view_dashboard_report", BooleanType),
-        Property("manage_purchase_orders", BooleanType),
-        Property("manage_stock_transfers", BooleanType),
-        Property("remove_order_inventory", BooleanType),
-        Property("view_stock_take_report", BooleanType),
-        Property("manage_general_settings", BooleanType),
-        Property("manage_role_permissions", BooleanType),
-        Property("import_and_export_orders", BooleanType),
-        Property("manual_stock_adjustments", BooleanType),
-        Property("view_sales_digest_report", BooleanType),
-        Property("manage_inventory_settings", BooleanType),
-        Property("manage_printing_templates", BooleanType),
-        Property("delete_company_custom_views", BooleanType),
-        Property("manage_collection_manifests", BooleanType),
-        Property("update_company_custom_views", BooleanType),
-        Property("view_warehouse_inventory_report", BooleanType),
+    properties = th.PropertiesList(
+        th.Property("rules", th.BooleanType),
+        th.Property("accounts", th.BooleanType),
+        th.Property("invoices", th.BooleanType),
+        th.Property("customers", th.BooleanType),
+        th.Property("edit_users", th.BooleanType),
+        th.Property("share_views", th.BooleanType),
+        th.Property("edit_channels", th.BooleanType),
+        th.Property("custom_reports", th.BooleanType),
+        th.Property("delete_product", th.BooleanType),
+        th.Property("manage_billing", th.BooleanType),
+        th.Property("edit_cost_price", th.BooleanType),
+        th.Property("edit_warehouses", th.BooleanType),
+        th.Property("email_templates", th.BooleanType),
+        th.Property("manage_listings", th.BooleanType),
+        th.Property("manage_shipping", th.BooleanType),
+        th.Property("manage_suppliers", th.BooleanType),
+        th.Property("view_team_report", th.BooleanType),
+        th.Property("view_sales_report", th.BooleanType),
+        th.Property("edit_product_price", th.BooleanType),
+        th.Property("share_custom_views", th.BooleanType),
+        th.Property("edit_product_images", th.BooleanType),
+        th.Property("view_product_report", th.BooleanType),
+        th.Property("view_forecast_report", th.BooleanType),
+        th.Property("view_shipping_report", th.BooleanType),
+        th.Property("create_order_payments", th.BooleanType),
+        th.Property("edit_delivery_methods", th.BooleanType),
+        th.Property("manage_picking_queues", th.BooleanType),
+        th.Property("picking_configuration", th.BooleanType),
+        th.Property("view_dashboard_report", th.BooleanType),
+        th.Property("manage_purchase_orders", th.BooleanType),
+        th.Property("manage_stock_transfers", th.BooleanType),
+        th.Property("remove_order_inventory", th.BooleanType),
+        th.Property("view_stock_take_report", th.BooleanType),
+        th.Property("manage_general_settings", th.BooleanType),
+        th.Property("manage_role_permissions", th.BooleanType),
+        th.Property("import_and_export_orders", th.BooleanType),
+        th.Property("manual_stock_adjustments", th.BooleanType),
+        th.Property("view_sales_digest_report", th.BooleanType),
+        th.Property("manage_inventory_settings", th.BooleanType),
+        th.Property("manage_printing_templates", th.BooleanType),
+        th.Property("delete_company_custom_views", th.BooleanType),
+        th.Property("manage_collection_manifests", th.BooleanType),
+        th.Property("update_company_custom_views", th.BooleanType),
+        th.Property("view_warehouse_inventory_report", th.BooleanType),
     )
 
 
 class _RoleObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("company_id", IntegerType),
-        Property(
-            "name", StringType
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("company_id", th.IntegerType),
+        th.Property(
+            "name", th.StringType
         ),  # Admin, Customer Service Manager, Warehouse Manager, Purchaser, Accountant, Customer Service Agent, Picker/Packer
-        Property("permissions", _PermissionsObject),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
+        th.Property("permissions", _PermissionsObject),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
     )
 
 
 class _StockTakePreferenceObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("warehouse_id", IntegerType),
-        Property("percentage", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("warehouse_id", th.IntegerType),
+        th.Property("percentage", th.IntegerType),
     )
 
 
 class EmployeeObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("company_id", IntegerType),
-        Property("login", StringType),
-        Property("email", EmailType),
-        Property("default_warehouse_id", IntegerType),
-        Property("default_channel_id", IntegerType),
-        Property("two_factor_authentication_enabled", BooleanType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("timezone", StringType),
-        Property("role", _RoleObject),
-        Property("stock_take_preferences", ArrayType(_StockTakePreferenceObject)),
-        Property("company_owner", BooleanType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("company_id", th.IntegerType),
+        th.Property("login", th.StringType),
+        th.Property("email", th.EmailType),
+        th.Property("default_warehouse_id", th.IntegerType),
+        th.Property("default_channel_id", th.IntegerType),
+        th.Property("two_factor_authentication_enabled", th.BooleanType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("timezone", th.StringType),
+        th.Property("role", _RoleObject),
+        th.Property("stock_take_preferences", th.ArrayType(_StockTakePreferenceObject)),
+        th.Property("company_owner", th.BooleanType),
     )

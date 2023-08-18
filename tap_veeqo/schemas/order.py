@@ -1,16 +1,4 @@
-from singer_sdk.typing import (
-    ArrayType,
-    BooleanType,
-    DateTimeType,
-    IntegerType,
-    NumberType,
-    ObjectType,
-    PropertiesList,
-    Property,
-    StringType,
-    URIReferenceType,
-    URIType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject, NullType
 from tap_veeqo.schemas.address import BillingAddressObject, DeliveryAddressObject
@@ -24,283 +12,285 @@ from tap_veeqo.schemas.warehouse import WarehouseObject
 
 
 class _EmployeeNoteObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("text", StringType),
-        Property("order_id", IntegerType),
-        Property("created_at", DateTimeType),
-        Property("mentions", ArrayType(EmployeeObject)),
-        Property("created_by", EmployeeObject),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("text", th.StringType),
+        th.Property("order_id", th.IntegerType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("mentions", th.ArrayType(EmployeeObject)),
+        th.Property("created_by", EmployeeObject),
     )
 
 
 class _PaymentObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("payment_type", StringType),
-        Property("reference_number", StringType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("order_id", IntegerType),
-        Property("card_number", StringType),
-        Property("created_by_id", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("payment_type", th.StringType),
+        th.Property("reference_number", th.StringType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("order_id", th.IntegerType),
+        th.Property("card_number", th.StringType),
+        th.Property("created_by_id", th.IntegerType),
     )
 
 
 class _DeliveryMethodObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("cost", NumberType),
-        Property("name", StringType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("cost", th.NumberType),
+        th.Property("name", th.StringType),
     )
 
 
 class _CustomerNoteObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("text", StringType),
-        Property("order_id", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("text", th.StringType),
+        th.Property("order_id", th.IntegerType),
     )
 
 
 class _LineItemObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("price_per_unit", NumberType),
-        Property("quantity", IntegerType),
-        Property("picked_quantity", IntegerType),
-        Property("tax_rate", NumberType),
-        Property("taxless_discount_per_unit", NumberType),
-        Property("additional_options", StringType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("remote_id", StringType),
-        Property("sellable", SellableObject),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("price_per_unit", th.NumberType),
+        th.Property("quantity", th.IntegerType),
+        th.Property("picked_quantity", th.IntegerType),
+        th.Property("tax_rate", th.NumberType),
+        th.Property("taxless_discount_per_unit", th.NumberType),
+        th.Property("additional_options", th.StringType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("remote_id", th.StringType),
+        th.Property("sellable", SellableObject),
     )
 
 
 class _TrackingNumberObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("tracking_number", StringType),
-        Property("cancelled", BooleanType),
-        Property("used", BooleanType),
-        Property("carrier_service_id", IntegerType),
-        Property("billed", BooleanType),
-        Property("shipment_id", IntegerType),
-        Property("tracking_number_range_id", IntegerType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("user_trackable", BooleanType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("tracking_number", th.StringType),
+        th.Property("cancelled", th.BooleanType),
+        th.Property("used", th.BooleanType),
+        th.Property("carrier_service_id", th.IntegerType),
+        th.Property("billed", th.BooleanType),
+        th.Property("shipment_id", th.IntegerType),
+        th.Property("tracking_number_range_id", th.IntegerType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("user_trackable", th.BooleanType),
     )
 
 
 class _OptionValueObject(CustomObject):
-    properties = PropertiesList(
-        Property("value", StringType),
-        Property("label", StringType),
-        Property("price", NullType),
-        Property("currency", NullType),
+    properties = th.PropertiesList(
+        th.Property("value", th.StringType),
+        th.Property("label", th.StringType),
+        th.Property("price", NullType),
+        th.Property("currency", NullType),
     )
 
 
 class _OptionObject(CustomObject):
-    properties = PropertiesList(
-        Property(
-            "key", StringType
+    properties = th.PropertiesList(
+        th.Property(
+            "key", th.StringType
         ),  # parcel_type, delivery_type, account_type, signature
-        Property("label", StringType),
-        Property("type", StringType),  # select
-        Property("multiple", BooleanType),
-        Property("values", ArrayType(_OptionValueObject)),
-        Property("validation", NullType),
-        Property("unit", NullType),
+        th.Property("label", th.StringType),
+        th.Property("type", th.StringType),  # select
+        th.Property("multiple", th.BooleanType),
+        th.Property("values", th.ArrayType(_OptionValueObject)),
+        th.Property("validation", NullType),
+        th.Property("unit", NullType),
     )
 
 
 class _ShippingServiceOptionsObject(CustomObject):
-    properties = PropertiesList(
-        Property("base", ArrayType(_OptionObject)),
+    properties = th.PropertiesList(
+        th.Property("base", th.ArrayType(_OptionObject)),
     )
 
 
 class _CarrierObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("provider_type", StringType),
-        Property("slug", StringType),
-        Property("name", StringType),
-        Property("is_configured?", BooleanType),
-        Property("is_integrated?", BooleanType),
-        Property("is_demo_mode?", BooleanType),
-        Property("show_when_shipping?", BooleanType),
-        Property("inbound_supported", BooleanType),
-        Property("shipping_service_options", _ShippingServiceOptionsObject),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("provider_type", th.StringType),
+        th.Property("slug", th.StringType),
+        th.Property("name", th.StringType),
+        th.Property("is_configured?", th.BooleanType),
+        th.Property("is_integrated?", th.BooleanType),
+        th.Property("is_demo_mode?", th.BooleanType),
+        th.Property("show_when_shipping?", th.BooleanType),
+        th.Property("inbound_supported", th.BooleanType),
+        th.Property("shipping_service_options", _ShippingServiceOptionsObject),
     )
 
 
 class _ShipmentObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("updated_at", DateTimeType),
-        Property("created_at", DateTimeType),
-        Property("allocation_id", IntegerType),
-        Property("carrier_id", IntegerType),
-        Property("shipped_by_id", IntegerType),
-        Property("parcel_format", NullType),
-        Property("postal_class", NullType),
-        Property("weight", NumberType),
-        Property("collection_manifest_id", IntegerType),
-        Property("carrier_service_id", IntegerType),
-        Property(
-            "service_type", StringType
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("allocation_id", th.IntegerType),
+        th.Property("carrier_id", th.IntegerType),
+        th.Property("shipped_by_id", th.IntegerType),
+        th.Property("parcel_format", NullType),
+        th.Property("postal_class", NullType),
+        th.Property("weight", th.NumberType),
+        th.Property("collection_manifest_id", th.IntegerType),
+        th.Property("carrier_service_id", th.IntegerType),
+        th.Property(
+            "service_type", th.StringType
         ),  # 1, 10, 30, 48, 220, 225, 240, 250, 260, 270
-        Property("service_name", StringType),
-        Property("short_service_name", NullType),
-        Property("service_carrier_name", NullType),
-        Property("packaging_type", NullType),
-        Property("drop_off_type", NullType),
-        Property("insured_value", NumberType),
-        Property("notify_customer", BooleanType),
-        Property("update_remote_order", BooleanType),
-        Property("delivery_confirmation_number", NullType),
-        Property("tracking_url", URIType),
-        Property("label_url", URIReferenceType),
-        Property("commercial_invoice_url", NullType),
-        Property("aftership_url", URIType),
-        Property("tracking_number", _TrackingNumberObject),
-        Property("order_id", IntegerType),
-        Property("carrier", _CarrierObject),
-        Property("carrier_service", NullType),
-        Property("carrier_country", NullType),
-        Property("carrier_fees", ArrayType(ObjectType())),
-        Property("carrier_fee", NullType),
-        Property("shipped_by", EmployeeObject),
+        th.Property("service_name", th.StringType),
+        th.Property("short_service_name", NullType),
+        th.Property("service_carrier_name", NullType),
+        th.Property("packaging_type", NullType),
+        th.Property("drop_off_type", NullType),
+        th.Property("insured_value", th.NumberType),
+        th.Property("notify_customer", th.BooleanType),
+        th.Property("update_remote_order", th.BooleanType),
+        th.Property("delivery_confirmation_number", NullType),
+        th.Property("tracking_url", th.URIType),
+        th.Property("label_url", th.URIReferenceType),
+        th.Property("commercial_invoice_url", NullType),
+        th.Property("aftership_url", th.URIType),
+        th.Property("tracking_number", _TrackingNumberObject),
+        th.Property("order_id", th.IntegerType),
+        th.Property("carrier", _CarrierObject),
+        th.Property("carrier_service", NullType),
+        th.Property("carrier_country", NullType),
+        th.Property("carrier_fees", th.ArrayType(th.ObjectType())),
+        th.Property("carrier_fee", NullType),
+        th.Property("shipped_by", EmployeeObject),
     )
 
 
 class _AllocationObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("updated_at", DateTimeType),
-        Property("created_at", DateTimeType),
-        Property("total_weight", NumberType),
-        Property("weight_unit", StringType),  # g, kg
-        Property("allocated_by_id", IntegerType),
-        Property("order_id", IntegerType),
-        Property("packed_completely", NullType),
-        Property("due_date", DateTimeType),
-        Property("dispatch_date", DateTimeType),
-        Property("line_items", ArrayType(_LineItemObject)),
-        Property("recommended_shipping_options", NullType),
-        Property("preferred_shipment_options", NullType),
-        Property("matched_parcel_properties_criteria", NullType),
-        Property("shipment", _ShipmentObject),
-        Property("warehouse", WarehouseObject),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("total_weight", th.NumberType),
+        th.Property("weight_unit", th.StringType),  # g, kg
+        th.Property("allocated_by_id", th.IntegerType),
+        th.Property("order_id", th.IntegerType),
+        th.Property("packed_completely", NullType),
+        th.Property("due_date", th.DateTimeType),
+        th.Property("dispatch_date", th.DateTimeType),
+        th.Property("line_items", th.ArrayType(_LineItemObject)),
+        th.Property("recommended_shipping_options", NullType),
+        th.Property("preferred_shipment_options", NullType),
+        th.Property("matched_parcel_properties_criteria", NullType),
+        th.Property("shipment", _ShipmentObject),
+        th.Property("warehouse", WarehouseObject),
     )
 
 
 class _ReturnLineItemObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("title", StringType),
-        Property("sku_code", StringType),
-        Property("quantity", IntegerType),
-        Property("sellable_id", IntegerType),
-        Property("received_quantity", IntegerType),
-        Property("refund_amount", NumberType),
-        Property("refund_amount_per_unit", NumberType),
-        Property("refund_quantity", IntegerType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("title", th.StringType),
+        th.Property("sku_code", th.StringType),
+        th.Property("quantity", th.IntegerType),
+        th.Property("sellable_id", th.IntegerType),
+        th.Property("received_quantity", th.IntegerType),
+        th.Property("refund_amount", th.NumberType),
+        th.Property("refund_amount_per_unit", th.NumberType),
+        th.Property("refund_quantity", th.IntegerType),
     )
 
 
 class _ReturnObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("number", StringType),
-        Property("status", StringType),  # returning, returned
-        Property("reason", NullType),
-        Property("created_at", DateTimeType),
-        Property(
-            "type", StringType
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("number", th.StringType),
+        th.Property("status", th.StringType),  # returning, returned
+        th.Property("reason", NullType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property(
+            "type", th.StringType
         ),  # AllocatedItemsReturn, ShippedItemsReturn, UnallocatedItemsReturn
-        Property("line_items", ArrayType(_ReturnLineItemObject)),
-        Property("user", UserObject),
-        Property("warehouse_name", StringType),
+        th.Property("line_items", th.ArrayType(_ReturnLineItemObject)),
+        th.Property("user", UserObject),
+        th.Property("warehouse_name", th.StringType),
     )
 
 
 class OrderObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("cancel_reason", StringType),
-        Property("send_refund_email", BooleanType),
-        Property("cancelled_at", DateTimeType),
-        Property("created_at", DateTimeType),
-        Property("delivery_cost", NumberType),
-        Property("due_date", DateTimeType),
-        Property("dispatch_date", DateTimeType),
-        Property("international", BooleanType),
-        Property("notes", StringType),
-        Property("number", StringType),
-        Property("receipt_printed", BooleanType),
-        Property("send_notification_email", BooleanType),
-        Property("can_pay_by_card", BooleanType),
-        Property("shipped_at", DateTimeType),
-        Property(
-            "status", StringType
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("cancel_reason", th.StringType),
+        th.Property("send_refund_email", th.BooleanType),
+        th.Property("cancelled_at", th.DateTimeType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("delivery_cost", th.NumberType),
+        th.Property("due_date", th.DateTimeType),
+        th.Property("dispatch_date", th.DateTimeType),
+        th.Property("international", th.BooleanType),
+        th.Property("notes", th.StringType),
+        th.Property("number", th.StringType),
+        th.Property("receipt_printed", th.BooleanType),
+        th.Property("send_notification_email", th.BooleanType),
+        th.Property("can_pay_by_card", th.BooleanType),
+        th.Property("shipped_at", th.DateTimeType),
+        th.Property(
+            "status", th.StringType
         ),  # awaiting_fulfillment, awaiting_payment, awaiting_stock, cancelled, on_hold, refunded, shipped
-        Property("subtotal_price", NumberType),
-        Property("total_discounts", NumberType),
-        Property("total_price", NumberType),
-        Property("total_tax", NumberType),
-        Property("total_fees", NumberType),
-        Property("buyer_user_id", IntegerType),
-        Property("updated_at", DateTimeType),
-        Property("till_id", IntegerType),
-        Property("fulfilled_by_amazon", BooleanType),
-        Property("is_amazon_prime", BooleanType),
-        Property("is_amazon_premium_order", BooleanType),
-        Property("additional_order_level_taxless_discount", NumberType),
-        Property("additional_order_level_taxless_discount_percentage", NumberType),
-        Property("shipping_discount", NumberType),
-        Property("restock_shipped_items", BooleanType),
-        Property("adjustment_amount", NumberType),
-        Property("currency_code", StringType),
-        Property("contact_id", IntegerType),
-        Property("business_customer_billing_address_id", IntegerType),
-        Property("business_customer_shipping_address_id", IntegerType),
-        Property("payment_due_date", DateTimeType),
-        Property("payment_terms", IntegerType),  # 14
-        Property("price_list_id", IntegerType),
-        Property("picked_status", StringType),  # picked, unpicked
-        Property("invoice_file_url", URIType),
-        Property("invoice_date", DateTimeType),
-        Property("employee_notes", ArrayType(_EmployeeNoteObject)),
-        Property("tags", ArrayType(TagObject)),
-        Property("payment", _PaymentObject),
-        Property("invoice_sent_ago", IntegerType),
-        Property("invoice_viewed_at", NullType),
-        Property("refund_amount", NumberType),
-        Property("total_price", NumberType),
-        Property("cancelled_by", EmployeeObject),
-        Property("created_by", EmployeeObject),
-        Property("updated_by", EmployeeObject),
-        Property("delivery_method", _DeliveryMethodObject),
-        Property("deliver_to", DeliveryAddressObject),
-        Property("billing_address", BillingAddressObject),
-        Property("channel", StoreObject),
-        Property("customer", CustomerObject),
-        Property("customer_note", _CustomerNoteObject),
-        Property("allocations", ArrayType(_AllocationObject)),
-        Property("returns", ArrayType(_ReturnObject)),
-        Property("allocated_completely", BooleanType),
-        Property("picked_completely", BooleanType),
-        Property("fulfillment_channel_order", NullType),
-        Property("mergeable_id", StringType),
-        Property("with_duties", BooleanType),
-        Property("can_be_shipped", BooleanType),
-        Property("line_items", ArrayType(_LineItemObject)),
+        th.Property("subtotal_price", th.NumberType),
+        th.Property("total_discounts", th.NumberType),
+        th.Property("total_price", th.NumberType),
+        th.Property("total_tax", th.NumberType),
+        th.Property("total_fees", th.NumberType),
+        th.Property("buyer_user_id", th.IntegerType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("till_id", th.IntegerType),
+        th.Property("fulfilled_by_amazon", th.BooleanType),
+        th.Property("is_amazon_prime", th.BooleanType),
+        th.Property("is_amazon_premium_order", th.BooleanType),
+        th.Property("additional_order_level_taxless_discount", th.NumberType),
+        th.Property(
+            "additional_order_level_taxless_discount_percentage", th.NumberType
+        ),
+        th.Property("shipping_discount", th.NumberType),
+        th.Property("restock_shipped_items", th.BooleanType),
+        th.Property("adjustment_amount", th.NumberType),
+        th.Property("currency_code", th.StringType),
+        th.Property("contact_id", th.IntegerType),
+        th.Property("business_customer_billing_address_id", th.IntegerType),
+        th.Property("business_customer_shipping_address_id", th.IntegerType),
+        th.Property("payment_due_date", th.DateTimeType),
+        th.Property("payment_terms", th.IntegerType),  # 14
+        th.Property("price_list_id", th.IntegerType),
+        th.Property("picked_status", th.StringType),  # picked, unpicked
+        th.Property("invoice_file_url", th.URIType),
+        th.Property("invoice_date", th.DateTimeType),
+        th.Property("employee_notes", th.ArrayType(_EmployeeNoteObject)),
+        th.Property("tags", th.ArrayType(TagObject)),
+        th.Property("payment", _PaymentObject),
+        th.Property("invoice_sent_ago", th.IntegerType),
+        th.Property("invoice_viewed_at", NullType),
+        th.Property("refund_amount", th.NumberType),
+        th.Property("total_price", th.NumberType),
+        th.Property("cancelled_by", EmployeeObject),
+        th.Property("created_by", EmployeeObject),
+        th.Property("updated_by", EmployeeObject),
+        th.Property("delivery_method", _DeliveryMethodObject),
+        th.Property("deliver_to", DeliveryAddressObject),
+        th.Property("billing_address", BillingAddressObject),
+        th.Property("channel", StoreObject),
+        th.Property("customer", CustomerObject),
+        th.Property("customer_note", _CustomerNoteObject),
+        th.Property("allocations", th.ArrayType(_AllocationObject)),
+        th.Property("returns", th.ArrayType(_ReturnObject)),
+        th.Property("allocated_completely", th.BooleanType),
+        th.Property("picked_completely", th.BooleanType),
+        th.Property("fulfillment_channel_order", NullType),
+        th.Property("mergeable_id", th.StringType),
+        th.Property("with_duties", th.BooleanType),
+        th.Property("can_be_shipped", th.BooleanType),
+        th.Property("line_items", th.ArrayType(_LineItemObject)),
     )

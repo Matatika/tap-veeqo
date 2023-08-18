@@ -1,15 +1,4 @@
-from singer_sdk.typing import (
-    ArrayType,
-    BooleanType,
-    DateTimeType,
-    IntegerType,
-    NumberType,
-    ObjectType,
-    PropertiesList,
-    Property,
-    StringType,
-    URIType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject, NullType
 from tap_veeqo.schemas.inventory import InventoryObject
@@ -18,130 +7,132 @@ from tap_veeqo.schemas.warehouse import WarehouseObject
 
 
 class _ProductObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("title", StringType),
-        Property("weight", NumberType),
-        Property("origin_country", StringType),
-        Property("hs_tariff_number", StringType),
-        Property("tax_rate", NumberType),
-        Property("estimated_delivery", NullType),
-        Property("deleted_at", DateTimeType),
-        Property("deleted_by_id", IntegerType),
-        Property("description", StringType),
-        Property("main_image_src", URIType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("title", th.StringType),
+        th.Property("weight", th.NumberType),
+        th.Property("origin_country", th.StringType),
+        th.Property("hs_tariff_number", th.StringType),
+        th.Property("tax_rate", th.NumberType),
+        th.Property("estimated_delivery", NullType),
+        th.Property("deleted_at", th.DateTimeType),
+        th.Property("deleted_by_id", th.IntegerType),
+        th.Property("description", th.StringType),
+        th.Property("main_image_src", th.URIType),
     )
 
 
 class _StockEntryObject(CustomObject):
-    properties = PropertiesList(
-        Property("sellable_id", IntegerType),
-        Property("warehouse_id", IntegerType),
-        Property("infinite", BooleanType),
-        Property("allocated_stock_level", IntegerType),
-        Property("stock_running_low", BooleanType),
-        Property("updated_at", DateTimeType),
-        Property("incoming_stock_level", IntegerType),
-        Property("transit_outgoing_stock_level", IntegerType),
-        Property("warehouse", WarehouseObject),
-        Property("physical_stock_level", IntegerType),
-        Property("available_stock_level", IntegerType),
-        Property("sellable_on_hand_value", NumberType),
-        Property("transit_incoming_stock_level", IntegerType),
-        Property("location", NullType),
+    properties = th.PropertiesList(
+        th.Property("sellable_id", th.IntegerType),
+        th.Property("warehouse_id", th.IntegerType),
+        th.Property("infinite", th.BooleanType),
+        th.Property("allocated_stock_level", th.IntegerType),
+        th.Property("stock_running_low", th.BooleanType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("incoming_stock_level", th.IntegerType),
+        th.Property("transit_outgoing_stock_level", th.IntegerType),
+        th.Property("warehouse", WarehouseObject),
+        th.Property("physical_stock_level", th.IntegerType),
+        th.Property("available_stock_level", th.IntegerType),
+        th.Property("sellable_on_hand_value", th.NumberType),
+        th.Property("transit_incoming_stock_level", th.IntegerType),
+        th.Property("location", NullType),
     )
 
 
 class _VariantPropertySpecificObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("product_specific_id", IntegerType),
-        Property("product_property_id", IntegerType),
-        Property("product_property_name", StringType),
-        Property("value", StringType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("product_specific_id", th.IntegerType),
+        th.Property("product_property_id", th.IntegerType),
+        th.Property("product_property_name", th.StringType),
+        th.Property("value", th.StringType),
     )
 
 
 class _MeasurementAttributesObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("width", NumberType),
-        Property("height", NumberType),
-        Property("depth", NumberType),
-        Property("dimensions_unit", StringType),  # cm
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("width", th.NumberType),
+        th.Property("height", th.NumberType),
+        th.Property("depth", th.NumberType),
+        th.Property("dimensions_unit", th.StringType),  # cm
     )
 
 
 class ChannelSellableObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("remote_title", StringType),
-        Property("remote_sku", StringType),
-        Property("remote_price", NumberType),
-        Property("remote_grams", StringType),
-        Property("remote_profit", NumberType),
-        Property("remote_margin", NumberType),
-        Property("currency_code", StringType),
-        Property("channel_product_id", IntegerType),
-        Property("channel_product_remote_title", StringType),
-        Property("channel_product_status", StringType),  # pulled
-        Property("sellable_id", IntegerType),
-        Property("image_url", URIType),
-        Property("url", URIType),
-        Property("failures", ArrayType(ObjectType())),
-        Property("channel", StoreObject),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("remote_title", th.StringType),
+        th.Property("remote_sku", th.StringType),
+        th.Property("remote_price", th.NumberType),
+        th.Property("remote_grams", th.StringType),
+        th.Property("remote_profit", th.NumberType),
+        th.Property("remote_margin", th.NumberType),
+        th.Property("currency_code", th.StringType),
+        th.Property("channel_product_id", th.IntegerType),
+        th.Property("channel_product_remote_title", th.StringType),
+        th.Property("channel_product_status", th.StringType),  # pulled
+        th.Property("sellable_id", th.IntegerType),
+        th.Property("image_url", th.URIType),
+        th.Property("url", th.URIType),
+        th.Property("failures", th.ArrayType(th.ObjectType())),
+        th.Property("channel", StoreObject),
     )
 
 
 class SellableObject(CustomObject):
-    properties = PropertiesList(
-        Property("awaiting_stock_orders_count", IntegerType),
-        Property("backorder_quantity", IntegerType),
-        Property("total_quantity_sold", IntegerType),
-        Property("requires_review", BooleanType),
-        Property("allocated_stock_level_at_all_warehouses", IntegerType),
-        Property("id", IntegerType),
-        Property("type", StringType),  # ProductVariant
-        Property("title", StringType),
-        Property("sku_code", StringType),
-        Property("upc_code", StringType),
-        Property("model_number", StringType),
-        Property("price", NumberType),
-        Property("cost_price", NumberType),
-        Property("min_reorder_level", IntegerType),
-        Property("quantity_to_reorder", IntegerType),
-        Property("created_by_id", IntegerType),
-        Property("created_at", DateTimeType),
-        Property("updated_at", DateTimeType),
-        Property("weight_grams", NumberType),
-        Property("weight_unit", StringType),  # g, kg
-        Property("product_title", StringType),
-        Property("full_title", StringType),
-        Property("sellable_title", StringType),
-        Property("profit", NumberType),
-        Property("margin", NumberType),
-        Property("tax_rate", NumberType),
-        Property("estimated_delivery", NullType),
-        Property("origin_country", StringType),
-        Property("hs_tariff_number", StringType),
-        Property("customs_description", StringType),
-        Property("image_url", URIType),
-        Property("product", _ProductObject),
-        Property("reorders", ArrayType(ObjectType())),
-        Property("stock_entries", ArrayType(_StockEntryObject)),
-        Property("variant_option_specifics", ArrayType(_VariantPropertySpecificObject)),
-        Property(
-            "variant_property_specifics",
-            ArrayType(_VariantPropertySpecificObject),
+    properties = th.PropertiesList(
+        th.Property("awaiting_stock_orders_count", th.IntegerType),
+        th.Property("backorder_quantity", th.IntegerType),
+        th.Property("total_quantity_sold", th.IntegerType),
+        th.Property("requires_review", th.BooleanType),
+        th.Property("allocated_stock_level_at_all_warehouses", th.IntegerType),
+        th.Property("id", th.IntegerType),
+        th.Property("type", th.StringType),  # ProductVariant
+        th.Property("title", th.StringType),
+        th.Property("sku_code", th.StringType),
+        th.Property("upc_code", th.StringType),
+        th.Property("model_number", th.StringType),
+        th.Property("price", th.NumberType),
+        th.Property("cost_price", th.NumberType),
+        th.Property("min_reorder_level", th.IntegerType),
+        th.Property("quantity_to_reorder", th.IntegerType),
+        th.Property("created_by_id", th.IntegerType),
+        th.Property("created_at", th.DateTimeType),
+        th.Property("updated_at", th.DateTimeType),
+        th.Property("weight_grams", th.NumberType),
+        th.Property("weight_unit", th.StringType),  # g, kg
+        th.Property("product_title", th.StringType),
+        th.Property("full_title", th.StringType),
+        th.Property("sellable_title", th.StringType),
+        th.Property("profit", th.NumberType),
+        th.Property("margin", th.NumberType),
+        th.Property("tax_rate", th.NumberType),
+        th.Property("estimated_delivery", NullType),
+        th.Property("origin_country", th.StringType),
+        th.Property("hs_tariff_number", th.StringType),
+        th.Property("customs_description", th.StringType),
+        th.Property("image_url", th.URIType),
+        th.Property("product", _ProductObject),
+        th.Property("reorders", th.ArrayType(th.ObjectType())),
+        th.Property("stock_entries", th.ArrayType(_StockEntryObject)),
+        th.Property(
+            "variant_option_specifics", th.ArrayType(_VariantPropertySpecificObject)
         ),
-        Property("images", ArrayType(URIType)),
-        Property("measurement_attributes", _MeasurementAttributesObject),
-        Property("main_thumbnail_url", URIType),
-        Property("available_stock_level_at_all_warehouses", IntegerType),
-        Property("stock_level_at_all_warehouses", IntegerType),
-        Property("inventory", InventoryObject),
-        Property("weight", NumberType),
-        Property("active_channels", ArrayType(StoreObject)),
-        Property("channel_sellables", ArrayType(ChannelSellableObject)),
-        Property("on_hand_value", NumberType),
+        th.Property(
+            "variant_property_specifics",
+            th.ArrayType(_VariantPropertySpecificObject),
+        ),
+        th.Property("images", th.ArrayType(th.URIType)),
+        th.Property("measurement_attributes", _MeasurementAttributesObject),
+        th.Property("main_thumbnail_url", th.URIType),
+        th.Property("available_stock_level_at_all_warehouses", th.IntegerType),
+        th.Property("stock_level_at_all_warehouses", th.IntegerType),
+        th.Property("inventory", InventoryObject),
+        th.Property("weight", th.NumberType),
+        th.Property("active_channels", th.ArrayType(StoreObject)),
+        th.Property("channel_sellables", th.ArrayType(ChannelSellableObject)),
+        th.Property("on_hand_value", th.NumberType),
     )

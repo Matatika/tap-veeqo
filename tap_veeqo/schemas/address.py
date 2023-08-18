@@ -1,54 +1,47 @@
-from singer_sdk.typing import (
-    BooleanType,
-    EmailType,
-    IntegerType,
-    PropertiesList,
-    Property,
-    StringType,
-)
+from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject, NullType
 
 
 class BillingAddressObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("short_name", StringType),
-        Property("first_name", StringType),
-        Property("last_name", StringType),
-        Property("address1", StringType),
-        Property("address2", StringType),
-        Property("city", StringType),
-        Property("company", StringType),
-        Property("country", StringType),
-        Property("state", StringType),
-        Property("zip", StringType),
-        Property("phone", StringType),
-        Property("email", EmailType),
-        Property("is_default", NullType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("short_name", th.StringType),
+        th.Property("first_name", th.StringType),
+        th.Property("last_name", th.StringType),
+        th.Property("address1", th.StringType),
+        th.Property("address2", th.StringType),
+        th.Property("city", th.StringType),
+        th.Property("company", th.StringType),
+        th.Property("country", th.StringType),
+        th.Property("state", th.StringType),
+        th.Property("zip", th.StringType),
+        th.Property("phone", th.StringType),
+        th.Property("email", th.EmailType),
+        th.Property("is_default", NullType),
     )
 
 
 class DeliveryAddressObject(CustomObject):
-    properties = PropertiesList(
-        Property("id", IntegerType),
-        Property("short_name", StringType),
-        Property("first_name", StringType),
-        Property("last_name", StringType),
-        Property("email", EmailType),
-        Property("company", StringType),
-        Property("address1", StringType),
-        Property("address2", StringType),
-        Property("city", StringType),
-        Property("country", StringType),
-        Property("state", StringType),
-        Property("zip", StringType),
-        Property("phone", StringType),
-        Property("tax_id", NullType),
-        Property("is_default", NullType),
-        Property("validated", NullType),
-        Property("residential", NullType),
-        Property("validation_message", NullType),
-        Property("verified", BooleanType),
-        Property("location_found", BooleanType),
+    properties = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("short_name", th.StringType),
+        th.Property("first_name", th.StringType),
+        th.Property("last_name", th.StringType),
+        th.Property("email", th.EmailType),
+        th.Property("company", th.StringType),
+        th.Property("address1", th.StringType),
+        th.Property("address2", th.StringType),
+        th.Property("city", th.StringType),
+        th.Property("country", th.StringType),
+        th.Property("state", th.StringType),
+        th.Property("zip", th.StringType),
+        th.Property("phone", th.StringType),
+        th.Property("tax_id", NullType),
+        th.Property("is_default", NullType),
+        th.Property("validated", NullType),
+        th.Property("residential", NullType),
+        th.Property("validation_message", NullType),
+        th.Property("verified", th.BooleanType),
+        th.Property("location_found", th.BooleanType),
     )
