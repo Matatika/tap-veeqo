@@ -1,23 +1,27 @@
+"""Schema definitions for tap-veeqo."""
+
 from singer_sdk import typing as th
-from singer_sdk.helpers._classproperty import classproperty
+from typing_extensions import override
 
 
 class CustomObject(th.JSONTypeHelper):
-    """Base custom object class"""
+    """Custom object."""
 
     properties: th.PropertiesList
 
-    @classproperty
+    @th.DefaultInstanceProperty
+    @override
     def type_dict(cls):
         return cls.properties.to_dict()
 
-    @classproperty
-    def schema(cls):
+    @th.DefaultInstanceProperty
+    def schema(cls):  # noqa: D102
         return cls.type_dict
 
 
 class NullType(th.JSONTypeHelper):
-    @classproperty
+    @th.DefaultInstanceProperty
+    @override
     def type_dict(self):
         return {
             "type": ["null"],

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import override
+
 from tap_veeqo.client import VeeqoStream
 from tap_veeqo.schemas.customer import CustomerObject
 from tap_veeqo.schemas.delivery_method import DeliveryMethodObject
@@ -82,6 +84,7 @@ class PurchaseOrdersStream(VeeqoStream):
     path = "/purchase_orders"
     schema = PurchaseOrderObject.schema
 
+    @override
     def post_process(self, row, context):
         # credit_limit can be either a string or decimal, so coerce to string
         credit_limit = row.get("supplier", {}).get("credit_limit")

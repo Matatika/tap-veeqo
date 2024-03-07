@@ -1,3 +1,5 @@
+"""Schema definitions for employee objects."""
+
 from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject
@@ -57,8 +59,16 @@ class _RoleObject(CustomObject):
         th.Property("id", th.IntegerType),
         th.Property("company_id", th.IntegerType),
         th.Property(
-            "name", th.StringType
-        ),  # Admin, Customer Service Manager, Warehouse Manager, Purchaser, Accountant, Customer Service Agent, Picker/Packer
+            "name",
+            th.StringType,
+            # Admin
+            # Customer Service Manager
+            # Warehouse Manager
+            # Purchaser
+            # Accountant
+            # Customer Service Agent
+            # Picker/Packer
+        ),
         th.Property("permissions", _PermissionsObject),
         th.Property("created_at", th.DateTimeType),
         th.Property("updated_at", th.DateTimeType),

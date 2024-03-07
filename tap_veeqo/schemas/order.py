@@ -1,3 +1,5 @@
+"""Schema definitions for order objects."""
+
 from singer_sdk import typing as th
 
 from tap_veeqo.schemas import CustomObject, NullType
@@ -238,8 +240,16 @@ class OrderObject(CustomObject):
         th.Property("can_pay_by_card", th.BooleanType),
         th.Property("shipped_at", th.DateTimeType),
         th.Property(
-            "status", th.StringType
-        ),  # awaiting_fulfillment, awaiting_payment, awaiting_stock, cancelled, on_hold, refunded, shipped
+            "status",
+            th.StringType,
+            # awaiting_fulfillment
+            # awaiting_payment
+            # awaiting_stock
+            # cancelled
+            # on_hold
+            # refunded
+            # shipped
+        ),
         th.Property("subtotal_price", th.NumberType),
         th.Property("total_discounts", th.NumberType),
         th.Property("total_price", th.NumberType),
