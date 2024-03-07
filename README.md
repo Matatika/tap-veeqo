@@ -4,9 +4,15 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
+[![Python version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatatika%2Ftap-veeqo%2Fmaster%2Fpyproject.toml&query=tool.poetry.dependencies.python&label=python)](https://docs.python.org/3/)
+[![Singer SDK version](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatatika%2Ftap-veeqo%2Fmaster%2Fpyproject.toml&query=tool.poetry.dependencies%5B%22singer-sdk%22%5D&label=singer-sdk)](https://sdk.meltano.com/en/latest/)
+[![License](https://img.shields.io/github/license/Matatika/tap-veeqo)](https://github.com/Matatika/tap-veeqo/blob/main/LICENSE)
+[![Code style](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fastral-sh%2Fruff%2Fmain%2Fassets%2Fbadge%2Fformat.json)](https://docs.astral.sh/ruff/)
+
 ## Overview
 
 `tap-veeqo` extracts raw data from the [Veeqo API](https://developer.veeqo.com/docs) for the following resources:
+
 - [Orders](https://developer.veeqo.com/docs#/reference/orders)
 - [Products](https://developer.veeqo.com/docs#/reference/products)
 - [Purchase Orders](https://developer.veeqo.com/docs#/reference/purchase-orders)
@@ -38,9 +44,9 @@ poetry add git+https://github.com/Matatika/tap-veeqo
 
 ### Accepted Config Options
 
-Name | Required | Default | Description
---- | --- | --- | ---
-`api_key` | Yes |  | Your user API key
+| Name      | Required | Default | Description       |
+| --------- | -------- | ------- | ----------------- |
+| `api_key` | Yes      |         | Your user API key |
 
 A full list of supported settings and capabilities for this
 tap is available by running:
@@ -60,6 +66,7 @@ environment variable is set either in the terminal context or in the `.env` file
 Before using `tap-veeqo`, you will need to [generate an API key](https://developer.veeqo.com/docs#/introduction/authentication/generating-your-api-keys) for the Veeqo user you want to authenticate as.
 
 #### User roles
+
 There is currently no documentation on how [Veeqo user roles](https://help.veeqo.com/en/articles/6969529-users-overview#h_78cc6b5a1d) affect API access. This tap was developed and tested using a test user with the `Admin` role, for which all resources are accessible - your milage may vary with other roles.
 
 ## Usage
@@ -88,7 +95,7 @@ poetry install
 ### Create and Run Tests
 
 Create tests within the `tap_veeqo/tests` subfolder and
-  then run:
+then run:
 
 ```bash
 poetry run pytest
