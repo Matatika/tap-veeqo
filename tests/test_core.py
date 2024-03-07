@@ -6,7 +6,6 @@ from singer_sdk.testing import get_tap_test_class
 
 from tap_veeqo.tap import TapVeeqo
 
-
 SAMPLE_CONFIG = {
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     # TODO: Initialize minimal tap config
@@ -14,10 +13,7 @@ SAMPLE_CONFIG = {
 
 
 # Run standard built-in tap tests from the SDK:
-TestTapVeeqo = get_tap_test_class(
-    tap_class=TapVeeqo,
-    config=SAMPLE_CONFIG
-)
+TestTapVeeqo = get_tap_test_class(tap_class=TapVeeqo, config=SAMPLE_CONFIG)
 
 
 # TODO: Create additional tests as appropriate for your tap.

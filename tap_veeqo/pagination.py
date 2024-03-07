@@ -1,11 +1,18 @@
+"""Pagination classes for tap-veeqo."""
+
 from singer_sdk.pagination import BasePageNumberPaginator
+from typing_extensions import override
 
 
 class VeeqoPaginator(BasePageNumberPaginator):
-    def __init__(self, page_size: int):
+    """Base API paginator."""
+
+    @override
+    def __init__(self, page_size: int) -> None:
         super().__init__(1)
         self.page_size = page_size
 
+    @override
     def has_more(self, response):
         total_pages = response.headers.get("x-total-pages-count")
         if total_pages:
