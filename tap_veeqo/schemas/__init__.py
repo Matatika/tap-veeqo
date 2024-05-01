@@ -5,6 +5,8 @@ from typing_extensions import override
 
 
 class NullType(th.JSONTypeHelper):
+    """`null` type."""
+
     @th.DefaultInstanceProperty
     @override
     def type_dict(self):
