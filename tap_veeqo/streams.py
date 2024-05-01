@@ -24,7 +24,7 @@ class CustomersStream(VeeqoStream):
 
     name = "customers"
     path = "/customers"
-    schema = CustomerObject.schema
+    schema = CustomerObject.to_dict()
 
 
 class DeliveryMethodsStream(VeeqoStream):
@@ -32,7 +32,7 @@ class DeliveryMethodsStream(VeeqoStream):
 
     name = "delivery_methods"
     path = "/delivery_methods"
-    schema = DeliveryMethodObject.schema
+    schema = DeliveryMethodObject.to_dict()
 
 
 class EmployeesStream(VeeqoStream):
@@ -40,7 +40,7 @@ class EmployeesStream(VeeqoStream):
 
     name = "employees"
     path = "/employees"
-    schema = EmployeeObject.schema
+    schema = EmployeeObject.to_dict()
 
 
 class OrdersStream(VeeqoStream):
@@ -49,7 +49,7 @@ class OrdersStream(VeeqoStream):
     name = "orders"
     path = "/orders"
     replication_key = "updated_at"
-    schema = OrderObject.schema
+    schema = OrderObject.to_dict()
 
 
 class ProductsStream(VeeqoStream):
@@ -58,7 +58,7 @@ class ProductsStream(VeeqoStream):
     name = "products"
     path = "/products"
     replication_key = "updated_at"
-    schema = ProductObject.schema
+    schema = ProductObject.to_dict()
 
 
 class ProductBrandsStream(VeeqoStream):
@@ -66,7 +66,7 @@ class ProductBrandsStream(VeeqoStream):
 
     name = "product_brands"
     path = "/product_brands"
-    schema = ProductBrandObject.schema
+    schema = ProductBrandObject.to_dict()
 
 
 class ProductTagsStream(VeeqoStream):
@@ -74,7 +74,7 @@ class ProductTagsStream(VeeqoStream):
 
     name = "product_tags"
     path = "/products/tags"
-    schema = TagObject.schema
+    schema = TagObject.to_dict()
 
 
 class PurchaseOrdersStream(VeeqoStream):
@@ -82,7 +82,7 @@ class PurchaseOrdersStream(VeeqoStream):
 
     name = "purchase_orders"
     path = "/purchase_orders"
-    schema = PurchaseOrderObject.schema
+    schema = PurchaseOrderObject.to_dict()
 
     @override
     def post_process(self, row, context):
@@ -100,7 +100,7 @@ class SellablesStream(VeeqoStream):
 
     name = "sellables"
     path = "/sellables"
-    schema = SellableObject.schema
+    schema = SellableObject.to_dict()
 
 
 class StoresStream(VeeqoStream):
@@ -108,7 +108,7 @@ class StoresStream(VeeqoStream):
 
     name = "stores"
     path = "/channels"
-    schema = StoreObject.schema
+    schema = StoreObject.to_dict()
 
 
 class SuppliersStream(VeeqoStream):
@@ -116,7 +116,7 @@ class SuppliersStream(VeeqoStream):
 
     name = "suppliers"
     path = "/suppliers"
-    schema = SupplierObject.schema
+    schema = SupplierObject.to_dict()
 
 
 class TagsStream(VeeqoStream):
@@ -124,7 +124,7 @@ class TagsStream(VeeqoStream):
 
     name = "tags"
     path = "/tags"
-    schema = TagObject.schema
+    schema = TagObject.to_dict()
 
 
 class WarehousesStream(VeeqoStream):
@@ -132,4 +132,4 @@ class WarehousesStream(VeeqoStream):
 
     name = "warehouses"
     path = "/warehouses"
-    schema = WarehouseObject.schema
+    schema = WarehouseObject.to_dict()
