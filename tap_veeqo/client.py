@@ -43,3 +43,7 @@ class VeeqoStream(RESTStream):
             params["updated_at_min"] = last_updated
 
         return params
+
+    @override
+    def backoff_max_tries(self):
+        return 8
