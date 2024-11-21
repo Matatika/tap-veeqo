@@ -12,6 +12,7 @@ from tap_veeqo.schemas.order import OrderObject
 from tap_veeqo.schemas.product import ProductObject
 from tap_veeqo.schemas.product_brand import ProductBrandObject
 from tap_veeqo.schemas.product_property import ProductPropertyObject
+from tap_veeqo.schemas.product_property_specific import ProductPropertySpecificObject
 from tap_veeqo.schemas.purchase_order import PurchaseOrderObject
 from tap_veeqo.schemas.sellable import SellableObject
 from tap_veeqo.schemas.store import StoreObject
@@ -61,6 +62,10 @@ class ProductsStream(VeeqoStream):
     replication_key = "updated_at"
     schema = ProductObject.to_dict()
 
+    @override
+    def get_child_context(self, record, context):
+        return {"id": record["id"]}
+
 
 class ProductBrandsStream(VeeqoStream):
     """Define product brands stream."""
@@ -76,6 +81,16 @@ class ProductPropertiesStream(VeeqoStream):
     name = "product_properties"
     path = "/product_properties"
     schema = ProductPropertyObject.to_dict()
+
+
+class ProductPropertySpecificsStream(VeeqoStream):
+    """Define product property specifics stream."""
+
+    name = "product_property_specifics"
+    parent_stream_type = ProductsStream
+    path = "/products/{id}/product_property_specifics"
+    schema = ProductPropertySpecificObject.to_dict()
+    primary_keys = ("id", "product_property_id")
 
 
 class ProductTagsStream(VeeqoStream):
