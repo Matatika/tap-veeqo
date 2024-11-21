@@ -11,6 +11,7 @@ from tap_veeqo.schemas.employee import EmployeeObject
 from tap_veeqo.schemas.order import OrderObject
 from tap_veeqo.schemas.product import ProductObject
 from tap_veeqo.schemas.product_brand import ProductBrandObject
+from tap_veeqo.schemas.product_property import ProductPropertyObject
 from tap_veeqo.schemas.purchase_order import PurchaseOrderObject
 from tap_veeqo.schemas.sellable import SellableObject
 from tap_veeqo.schemas.store import StoreObject
@@ -67,6 +68,14 @@ class ProductBrandsStream(VeeqoStream):
     name = "product_brands"
     path = "/product_brands"
     schema = ProductBrandObject.to_dict()
+
+
+class ProductPropertiesStream(VeeqoStream):
+    """Define product properties stream."""
+
+    name = "product_properties"
+    path = "/product_properties"
+    schema = ProductPropertyObject.to_dict()
 
 
 class ProductTagsStream(VeeqoStream):
