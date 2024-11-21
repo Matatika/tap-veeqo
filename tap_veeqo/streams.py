@@ -93,6 +93,13 @@ class ProductPropertySpecificsStream(VeeqoStream):
     primary_keys = ("id", "product_property_id")
 
 
+class ProductOptionSpecificsStream(ProductPropertySpecificsStream):
+    """Define product option specifics stream."""
+
+    name = "product_option_specifics"
+    path = "/products/{id}/product_option_specifics"
+
+
 class ProductTagsStream(VeeqoStream):
     """Define product tags stream."""
 

@@ -17,6 +17,7 @@ STREAM_TYPES = [
     streams.ProductBrandsStream,
     streams.ProductPropertiesStream,
     streams.ProductPropertySpecificsStream,
+    streams.ProductOptionSpecificsStream,
     streams.ProductTagsStream,
     streams.PurchaseOrdersStream,
     streams.SellablesStream,
