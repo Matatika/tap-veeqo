@@ -14,7 +14,7 @@ class VeeqoStream(RESTStream):
 
     url_base = "https://api.veeqo.com"
     primary_keys = ("id",)
-    page_size = 100
+    page_size = 1000
 
     @property
     @override
