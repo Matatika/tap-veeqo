@@ -33,7 +33,7 @@ class VeeqoStream(RESTStream):
     @override
     def get_url_params(self, context, next_page_token):
         params = {
-            "page_size": self.page_size,
+            "per_page": self.page_size,
             "page": next_page_token,
         }
 
