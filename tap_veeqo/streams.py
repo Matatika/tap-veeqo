@@ -18,6 +18,7 @@ from tap_veeqo.schemas.sellable import SellableObject
 from tap_veeqo.schemas.store import StoreObject
 from tap_veeqo.schemas.supplier import SupplierObject
 from tap_veeqo.schemas.tag import TagObject
+from tap_veeqo.schemas.variant_property_specific import VariantPropertySpecificObject
 from tap_veeqo.schemas.warehouse import WarehouseObject
 
 
@@ -132,6 +133,20 @@ class SellablesStream(VeeqoStream):
     name = "sellables"
     path = "/sellables"
     schema = SellableObject.to_dict()
+
+    @override
+    def get_child_context(self, record, context):
+        return {"id": record["id"]}
+
+
+class VariantPropertySpecificsStream(VeeqoStream):
+    """Define variant property specifics stream."""
+
+    name = "variant_property_specifics"
+    parent_stream_type = SellablesStream
+    path = "/product_variants/{id}/variant_property_specifics"
+    schema = VariantPropertySpecificObject.to_dict()
+    primary_keys = ("id", "product_specific_id", "product_property_id")
 
 
 class StoresStream(VeeqoStream):

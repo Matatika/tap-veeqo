@@ -21,6 +21,7 @@ STREAM_TYPES = [
     streams.ProductTagsStream,
     streams.PurchaseOrdersStream,
     streams.SellablesStream,
+    streams.VariantPropertySpecificsStream,
     streams.StoresStream,
     streams.SuppliersStream,
     streams.TagsStream,
