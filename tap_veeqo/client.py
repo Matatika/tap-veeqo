@@ -14,7 +14,7 @@ class VeeqoStream(RESTStream):
 
     url_base = "https://api.veeqo.com"
     primary_keys: tuple[str, ...] = ("id",)
-    page_size = 100
+    page_size = 1000
 
     @property
     @override
@@ -22,7 +22,7 @@ class VeeqoStream(RESTStream):
         return APIKeyAuthenticator.create_for_stream(
             self,
             key="x-api-key",
-            value=self.config.get("api_key"),
+            value=self.config["api_key"],
             location="header",
         )
 
@@ -33,7 +33,7 @@ class VeeqoStream(RESTStream):
     @override
     def get_url_params(self, context, next_page_token):
         params = {
-            "page_size": self.page_size,
+            "per_page": self.page_size,
             "page": next_page_token,
         }
 
