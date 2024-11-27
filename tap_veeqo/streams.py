@@ -135,6 +135,15 @@ class SellablesStream(VeeqoStream):
     schema = SellableObject.to_dict()
 
     @override
+    def get_url_params(self, context, next_page_token):
+        params = super().get_url_params(context, next_page_token)
+
+        del params["page_size"]
+        params["per_page"] = 1000
+
+        return params
+
+    @override
     def get_child_context(self, record, context):
         return {"variant_id": record["id"]}
 
