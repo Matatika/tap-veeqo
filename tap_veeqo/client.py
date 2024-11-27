@@ -13,7 +13,7 @@ class VeeqoStream(RESTStream):
     """Veeqo stream class."""
 
     url_base = "https://api.veeqo.com"
-    primary_keys = ("id",)
+    primary_keys: tuple[str, ...] = ("id",)
     page_size = 1000
 
     @property
