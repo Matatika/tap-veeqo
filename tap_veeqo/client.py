@@ -14,7 +14,7 @@ class VeeqoStream(RESTStream):
 
     url_base = "https://api.veeqo.com"
     primary_keys: tuple[str, ...] = ("id",)
-    page_size = 1000
+    page_size = 100
 
     @property
     @override
@@ -33,7 +33,7 @@ class VeeqoStream(RESTStream):
     @override
     def get_url_params(self, context, next_page_token):
         params = {
-            "per_page": self.page_size,
+            "page_size": self.page_size,
             "page": next_page_token,
         }
 
