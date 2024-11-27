@@ -65,7 +65,7 @@ class ProductsStream(VeeqoStream):
 
     @override
     def get_child_context(self, record, context):
-        return {"id": record["id"]}
+        return {"product_id": record["id"]}
 
 
 class ProductBrandsStream(VeeqoStream):
@@ -89,16 +89,16 @@ class ProductPropertySpecificsStream(VeeqoStream):
 
     name = "product_property_specifics"
     parent_stream_type = ProductsStream
-    path = "/products/{id}/product_property_specifics"
+    path = "/products/{product_id}/product_property_specifics"
     schema = ProductPropertySpecificObject.to_dict()
-    primary_keys = ("id", "product_property_id")
+    primary_keys = ("product_id", "id", "product_property_id")
 
 
 class ProductOptionSpecificsStream(ProductPropertySpecificsStream):
     """Define product option specifics stream."""
 
     name = "product_option_specifics"
-    path = "/products/{id}/product_option_specifics"
+    path = "/products/{product_id}/product_option_specifics"
 
 
 class ProductTagsStream(VeeqoStream):
@@ -136,7 +136,7 @@ class SellablesStream(VeeqoStream):
 
     @override
     def get_child_context(self, record, context):
-        return {"id": record["id"]}
+        return {"variant_id": record["id"]}
 
 
 class VariantPropertySpecificsStream(VeeqoStream):
@@ -144,9 +144,9 @@ class VariantPropertySpecificsStream(VeeqoStream):
 
     name = "variant_property_specifics"
     parent_stream_type = SellablesStream
-    path = "/product_variants/{id}/variant_property_specifics"
+    path = "/product_variants/{variant_id}/variant_property_specifics"
     schema = VariantPropertySpecificObject.to_dict()
-    primary_keys = ("id", "product_specific_id", "product_property_id")
+    primary_keys = ("variant_id", "id", "product_specific_id", "product_property_id")
 
 
 class StoresStream(VeeqoStream):
