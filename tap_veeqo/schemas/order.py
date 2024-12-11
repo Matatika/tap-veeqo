@@ -282,6 +282,8 @@ OrderObject = th.PropertiesList(
     th.Property("picked_completely", th.BooleanType),
     th.Property("fulfillment_channel_order", NullType),
     th.Property("mergeable_id", th.StringType),
+    th.Property("merged_to_id", th.StringType),
+    th.Property("merged_order", th.BooleanType),
     th.Property("with_duties", th.BooleanType),
     th.Property("can_be_shipped", th.BooleanType),
     th.Property("line_items", th.ArrayType(_LineItemObject)),

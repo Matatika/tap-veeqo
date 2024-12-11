@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tap-veeqo"
-version = "0.1.0"
+version = "0.3.1"
 description = "`tap-veeqo` is a Singer tap for Veeqo, built with the Meltano Singer SDK."
 readme = "README.md"
 authors = ["Reuben Frankel <rfrankel@matatika.com>"]
