@@ -2,7 +2,7 @@
 
 from singer_sdk import typing as th
 
-from tap_veeqo.schemas import NullType
+from tap_veeqo.schemas import DimensionsUnitProperty, NullType, WeightUnitProperty
 from tap_veeqo.schemas.inventory import InventoryObject
 from tap_veeqo.schemas.store import StoreObject
 from tap_veeqo.schemas.warehouse import WarehouseObject
@@ -54,7 +54,7 @@ _MeasurementAttributesObject = th.PropertiesList(
     th.Property("width", th.NumberType),
     th.Property("height", th.NumberType),
     th.Property("depth", th.NumberType),
-    th.Property("dimensions_unit", th.StringType),  # cm
+    DimensionsUnitProperty,
 )
 
 _ReorderObject = th.PropertiesList(
@@ -107,7 +107,7 @@ SellableObject = th.PropertiesList(
     th.Property("updated_at", th.DateTimeType),
     th.Property("deleted_at", th.DateTimeType),
     th.Property("weight_grams", th.NumberType),
-    th.Property("weight_unit", th.StringType),  # g, kg
+    WeightUnitProperty,
     th.Property("product_title", th.StringType),
     th.Property("full_title", th.StringType),
     th.Property("sellable_title", th.StringType),

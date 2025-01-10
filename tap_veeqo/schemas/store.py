@@ -2,7 +2,7 @@
 
 from singer_sdk import typing as th
 
-from tap_veeqo.schemas import NullType
+from tap_veeqo.schemas import NullType, WeightUnitProperty
 from tap_veeqo.schemas.warehouse import WarehouseObject
 
 _Api2CartChannelSpecficObject = th.PropertiesList(
@@ -85,7 +85,7 @@ StoreObject = th.PropertiesList(
     th.Property("create_product_on_ended_listings", th.BooleanType),
     th.Property("link_to_products_linked_to_current_channel", th.BooleanType),
     th.Property("link_with_similar_listings_by_sku", th.BooleanType),
-    th.Property("weight_unit", th.StringType),  # g, kg
+    WeightUnitProperty,
     th.Property("import_cost_price", th.BooleanType),
     th.Property("veeqo_dictates_price", th.BooleanType),
     th.Property("keep_inventory_tracking_value", th.BooleanType),
