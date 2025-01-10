@@ -173,6 +173,16 @@ class SuppliersStream(VeeqoStream):
     path = "/suppliers"
     schema = SupplierObject.to_dict()
 
+    @override
+    def post_process(self, row, context):
+        # credit_limit can be either a string or decimal, so coerce to string
+        credit_limit = row.get("credit_limit")
+
+        if credit_limit is not None:
+            row["credit_limit"] = str(credit_limit)
+
+        return row
+
 
 class TagsStream(VeeqoStream):
     """Define tags stream."""
