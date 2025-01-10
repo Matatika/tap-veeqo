@@ -47,8 +47,16 @@ _PriceListObject = th.PropertiesList(
 
 
 _ContactDataObject = th.PropertiesList(
+    th.Property("id", th.IntegerType),
+    th.Property("title", th.StringType),
+    th.Property("first_name", th.StringType),
+    th.Property("last_name", th.StringType),
     th.Property("email", th.EmailType),
     th.Property("phone", th.StringType),
+    th.Property("customer_id", th.IntegerType),
+    th.Property("created_at", th.DateTimeType),
+    th.Property("updated_at", th.DateTimeType),
+    th.Property("is_default", th.BooleanType),
 )
 
 
