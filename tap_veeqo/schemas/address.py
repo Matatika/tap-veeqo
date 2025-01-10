@@ -18,7 +18,7 @@ BillingAddressObject = th.PropertiesList(
     th.Property("zip", th.StringType),
     th.Property("phone", th.StringType),
     th.Property("email", th.EmailType),
-    th.Property("is_default", NullType),
+    th.Property("is_default", th.BooleanType),
 )
 
 
@@ -37,7 +37,7 @@ DeliveryAddressObject = th.PropertiesList(
     th.Property("zip", th.StringType),
     th.Property("phone", th.StringType),
     th.Property("tax_id", NullType),
-    th.Property("is_default", NullType),
+    th.Property("is_default", th.BooleanType),
     th.Property("validated", NullType),
     th.Property("residential", NullType),
     th.Property("validation_message", NullType),

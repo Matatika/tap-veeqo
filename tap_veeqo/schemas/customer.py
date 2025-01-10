@@ -34,7 +34,7 @@ _AddressObject = th.PropertiesList(
     th.Property("customer_id", th.IntegerType),
     th.Property("phone", th.StringType),
     th.Property("editable", th.BooleanType),
-    th.Property("is_default", NullType),
+    th.Property("is_default", th.BooleanType),
 )
 
 

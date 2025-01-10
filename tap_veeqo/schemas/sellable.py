@@ -36,7 +36,7 @@ _StockEntryObject = th.PropertiesList(
     th.Property("available_stock_level", th.IntegerType),
     th.Property("sellable_on_hand_value", th.NumberType),
     th.Property("transit_incoming_stock_level", th.IntegerType),
-    th.Property("location", NullType),
+    th.Property("location", th.StringType),
 )
 
 
@@ -46,6 +46,11 @@ _VariantPropertySpecificObject = th.PropertiesList(
     th.Property("product_property_id", th.IntegerType),
     th.Property("product_property_name", th.StringType),
     th.Property("value", th.StringType),
+)
+
+
+_ImageObject = th.PropertiesList(
+    th.Property("id", th.IntegerType),
 )
 
 
@@ -117,7 +122,7 @@ SellableObject = th.PropertiesList(
     th.Property("estimated_delivery", NullType),
     th.Property("origin_country", th.StringType),
     th.Property("hs_tariff_number", th.StringType),
-    th.Property("supplementary_units", th.IntegerType),
+    th.Property("supplementary_units", th.NumberType),
     th.Property("customs_description", th.StringType),
     th.Property("image_url", th.URIType),
     th.Property("product", _ProductObject),
@@ -130,7 +135,7 @@ SellableObject = th.PropertiesList(
         "variant_property_specifics",
         th.ArrayType(_VariantPropertySpecificObject),
     ),
-    th.Property("images", th.ArrayType(th.URIType)),
+    th.Property("images", th.ArrayType(_ImageObject)),
     th.Property("measurement_attributes", _MeasurementAttributesObject),
     th.Property("main_thumbnail_url", th.URIType),
     th.Property("available_stock_level_at_all_warehouses", th.IntegerType),
