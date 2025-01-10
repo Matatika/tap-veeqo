@@ -2,7 +2,7 @@
 
 from singer_sdk import typing as th
 
-from tap_veeqo.schemas import NullType
+from tap_veeqo.schemas import DimensionsUnitProperty, NullType, WeightUnitProperty
 from tap_veeqo.schemas.inventory import InventoryObject
 from tap_veeqo.schemas.store import StoreObject
 from tap_veeqo.schemas.warehouse import WarehouseObject
@@ -54,9 +54,17 @@ _MeasurementAttributesObject = th.PropertiesList(
     th.Property("width", th.NumberType),
     th.Property("height", th.NumberType),
     th.Property("depth", th.NumberType),
-    th.Property("dimensions_unit", th.StringType),  # cm
+    DimensionsUnitProperty,
 )
 
+_ReorderObject = th.PropertiesList(
+    th.Property("id", th.IntegerType),
+    th.Property("sellable_id", th.IntegerType),
+    th.Property("warehouse_id", th.IntegerType),
+    th.Property("min_reorder_level", th.IntegerType),
+    th.Property("quantity_to_reorder", th.IntegerType),
+    th.Property("max_reorder_level", th.IntegerType),
+)
 
 ChannelSellableObject = th.PropertiesList(
     th.Property("id", th.IntegerType),
@@ -97,8 +105,9 @@ SellableObject = th.PropertiesList(
     th.Property("created_by_id", th.IntegerType),
     th.Property("created_at", th.DateTimeType),
     th.Property("updated_at", th.DateTimeType),
+    th.Property("deleted_at", th.DateTimeType),
     th.Property("weight_grams", th.NumberType),
-    th.Property("weight_unit", th.StringType),  # g, kg
+    WeightUnitProperty,
     th.Property("product_title", th.StringType),
     th.Property("full_title", th.StringType),
     th.Property("sellable_title", th.StringType),
@@ -108,10 +117,11 @@ SellableObject = th.PropertiesList(
     th.Property("estimated_delivery", NullType),
     th.Property("origin_country", th.StringType),
     th.Property("hs_tariff_number", th.StringType),
+    th.Property("supplementary_units", th.IntegerType),
     th.Property("customs_description", th.StringType),
     th.Property("image_url", th.URIType),
     th.Property("product", _ProductObject),
-    th.Property("reorders", th.ArrayType(th.ObjectType())),
+    th.Property("reorders", th.ArrayType(_ReorderObject)),
     th.Property("stock_entries", th.ArrayType(_StockEntryObject)),
     th.Property(
         "variant_option_specifics", th.ArrayType(_VariantPropertySpecificObject)

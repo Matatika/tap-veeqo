@@ -13,3 +13,7 @@ class NullType(th.JSONTypeHelper):
         return {
             "type": ["null"],
         }
+
+
+WeightUnitProperty = th.Property("weight_unit", th.StringType)  # g, kg
+DimensionsUnitProperty = th.Property("dimensions_unit", th.StringType)  # cm
