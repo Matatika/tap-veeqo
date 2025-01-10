@@ -103,6 +103,8 @@ StoreObject = th.PropertiesList(
     th.Property("routing_order_type", th.IntegerType),
     th.Property("channel_setup_id", th.IntegerType),
     th.Property("is_master", th.BooleanType),
+    th.Property("notify_on_outbound_shipment_date", th.BooleanType),
+    th.Property("outbound_shipment_notification_time", th.TimeType),
     th.Property("warehouse", WarehouseObject),
     th.Property("warehouses", th.ArrayType(WarehouseObject)),
     th.Property("stock_level_update_requests", th.ArrayType(th.ObjectType())),

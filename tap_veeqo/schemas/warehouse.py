@@ -33,4 +33,12 @@ WarehouseObject = th.PropertiesList(
     th.Property("company_id", th.IntegerType),
     th.Property("eori_id", th.StringType),
     th.Property("ioss_id", th.StringType),
+    th.Property("letterbox_address_id", th.UUIDType),
+    th.Property("letterbox_address_status", th.StringType),  # READY
+    th.Property("tax_id", th.StringType),
+    th.Property("cut_off_times_enabled", th.BooleanType),
+    th.Property("cut_off_times", NullType),
+    th.Property("uk_ims_id", th.StringType),
+    th.Property("sortinghat_warehouse_id", th.UUIDType),
+    th.Property("cached_time_zone", th.StringType),
 )
