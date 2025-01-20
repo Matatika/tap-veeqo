@@ -12,10 +12,16 @@ SupplierObject = th.PropertiesList(
     th.Property("country", th.StringType),
     th.Property("post_code", th.StringType),
     th.Property("sales_contact_name", th.StringType),
-    th.Property("sales_contact_email", th.EmailType),
+    th.Property(
+        "sales_contact_email",
+        th.StringType,
+    ),  # valid email, empty string or null
     th.Property("sales_phone_number", th.StringType),
     th.Property("accounting_contact_name", th.StringType),
-    th.Property("accounting_contact_email", th.EmailType),
+    th.Property(
+        "accounting_contact_email",
+        th.StringType,
+    ),  # valid email, empty string, or null
     th.Property("accounting_phone_number", th.StringType),
     th.Property("currency_code", th.StringType),
     th.Property("created_by_id", th.IntegerType),

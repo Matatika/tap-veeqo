@@ -235,7 +235,7 @@ _AllocationObject = th.PropertiesList(
     th.Property("matched_parcel_properties_criteria", NullType),
     th.Property("shipment", _ShipmentObject),
     th.Property("warehouse", WarehouseObject),
-    th.Property("preferred_shipment_date", th.DateType),
+    th.Property("preferred_shipment_date", th.DateTimeType),
     th.Property("allocation_package", _AllocationPackageObject),
     th.Property("from_gb_to_northern_ireland", th.BooleanType),
 )
