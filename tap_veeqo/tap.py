@@ -1,7 +1,6 @@
-"""Veeqo tap class.
+# Copyright (c) 2026 Meltano.
 
-Copyright (c) 2026 Meltano.
-"""
+"""Veeqo tap class."""
 
 from __future__ import annotations
 

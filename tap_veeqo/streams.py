@@ -1,7 +1,6 @@
-"""Stream type classes for tap-veeqo.
+# Copyright (c) 2026 Meltano.
 
-Copyright (c) 2026 Meltano.
-"""
+"""Stream type classes for tap-veeqo."""
 
 from __future__ import annotations
 

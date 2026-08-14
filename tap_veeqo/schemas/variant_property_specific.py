@@ -1,7 +1,6 @@
-"""Schema definitions for variant property specific objects.
+# Copyright (c) 2026 Meltano.
 
-Copyright (c) 2026 Meltano.
-"""
+"""Schema definitions for variant property specific objects."""
 
 from singer_sdk import typing as th
 
