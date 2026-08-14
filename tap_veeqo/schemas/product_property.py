@@ -1,7 +1,4 @@
-"""Schema definitions for product property objects.
-
-Copyright (c) 2026 Meltano.
-"""
+"""Schema definitions for product property objects."""
 
 from singer_sdk import typing as th
 

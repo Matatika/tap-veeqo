@@ -1,7 +1,4 @@
-"""Schema definitions for employee objects.
-
-Copyright (c) 2026 Meltano.
-"""
+"""Schema definitions for employee objects."""
 
 from singer_sdk import typing as th
 
