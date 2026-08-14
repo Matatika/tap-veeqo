@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Meltano.
+
 """Pagination classes for tap-veeqo."""
 
 from singer_sdk.pagination import BasePageNumberPaginator

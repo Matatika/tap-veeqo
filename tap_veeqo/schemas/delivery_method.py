@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Meltano.
+
 """Schema definitions for delivery method objects."""
 
 from singer_sdk import typing as th
