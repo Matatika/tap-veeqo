@@ -1,4 +1,7 @@
-"""Pagination classes for tap-veeqo."""
+"""Pagination classes for tap-veeqo.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from singer_sdk.pagination import BasePageNumberPaginator
 from typing_extensions import override

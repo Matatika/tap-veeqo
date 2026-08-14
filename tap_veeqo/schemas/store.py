@@ -1,4 +1,7 @@
-"""Schema definitions for store objects."""
+"""Schema definitions for store objects.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from singer_sdk import typing as th
 
