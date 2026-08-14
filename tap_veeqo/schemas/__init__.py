@@ -1,4 +1,7 @@
-"""Schema definitions for tap-veeqo."""
+"""Schema definitions for tap-veeqo.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from singer_sdk import typing as th
 from typing_extensions import override

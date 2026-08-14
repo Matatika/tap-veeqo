@@ -1,4 +1,7 @@
-"""REST client handling, including VeeqoStream base class."""
+"""REST client handling, including VeeqoStream base class.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from __future__ import annotations
 

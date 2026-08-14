@@ -1,4 +1,7 @@
-"""Schema definitions for delivery method objects."""
+"""Schema definitions for delivery method objects.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from singer_sdk import typing as th
 

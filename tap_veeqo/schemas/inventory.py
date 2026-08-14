@@ -1,4 +1,7 @@
-"""Schema definitions for inventory objects."""
+"""Schema definitions for inventory objects.
+
+Copyright (c) 2026 Meltano.
+"""
 
 from singer_sdk import typing as th
 
