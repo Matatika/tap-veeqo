@@ -130,9 +130,7 @@ SellableObject = th.PropertiesList(
     th.Property("product", _ProductObject),
     th.Property("reorders", th.ArrayType(_ReorderObject)),
     th.Property("stock_entries", th.ArrayType(_StockEntryObject)),
-    th.Property(
-        "variant_option_specifics", th.ArrayType(_VariantPropertySpecificObject)
-    ),
+    th.Property("variant_option_specifics", th.ArrayType(_VariantPropertySpecificObject)),
     th.Property(
         "variant_property_specifics",
         th.ArrayType(_VariantPropertySpecificObject),

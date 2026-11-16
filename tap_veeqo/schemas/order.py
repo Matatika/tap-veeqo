@@ -120,9 +120,7 @@ _OptionValueObject = th.PropertiesList(
 
 
 _OptionObject = th.PropertiesList(
-    th.Property(
-        "key", th.StringType
-    ),  # parcel_type, delivery_type, account_type, signature
+    th.Property("key", th.StringType),  # parcel_type, delivery_type, account_type, signature
     th.Property("label", th.StringType),
     th.Property("type", th.StringType),  # select
     th.Property("multiple", th.BooleanType),
@@ -171,9 +169,7 @@ _ShipmentObject = th.PropertiesList(
     th.Property("weight", th.NumberType),
     th.Property("collection_manifest_id", th.IntegerType),
     th.Property("carrier_service_id", th.IntegerType),
-    th.Property(
-        "service_type", th.StringType
-    ),  # 1, 10, 30, 48, 220, 225, 240, 250, 260, 270
+    th.Property("service_type", th.StringType),  # 1, 10, 30, 48, 220, 225, 240, 250, 260, 270
     th.Property("service_name", th.StringType),
     th.Property("short_service_name", NullType),
     th.Property("service_carrier_name", NullType),
