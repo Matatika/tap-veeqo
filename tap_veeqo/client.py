@@ -4,25 +4,29 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from singer_sdk.authenticators import APIKeyAuthenticator
 from singer_sdk.streams import RESTStream
 from typing_extensions import override
 
 from tap_veeqo.pagination import VeeqoPaginator
 
+if t.TYPE_CHECKING:
+    from collections.abc import Sequence
+
 
 class VeeqoStream(RESTStream):
     """Veeqo stream class."""
 
     url_base = "https://api.veeqo.com"
-    primary_keys: tuple[str, ...] = ("id",)
+    primary_keys: Sequence[str] = ("id",)
     page_size = 100
 
     @property
     @override
     def authenticator(self):
-        return APIKeyAuthenticator.create_for_stream(
-            self,
+        return APIKeyAuthenticator(
             key="x-api-key",
             value=self.config["api_key"],
             location="header",

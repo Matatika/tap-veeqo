@@ -119,7 +119,7 @@ class PurchaseOrdersStream(VeeqoStream):
     schema = PurchaseOrderObject.to_dict()
 
     @override
-    def post_process(self, row, context):
+    def post_process(self, row, context=None):
         # credit_limit can be either a string or decimal, so coerce to string
         credit_limit = row.get("supplier", {}).get("credit_limit")
 
@@ -176,7 +176,7 @@ class SuppliersStream(VeeqoStream):
     schema = SupplierObject.to_dict()
 
     @override
-    def post_process(self, row, context):
+    def post_process(self, row, context=None):
         # credit_limit can be either a string or decimal, so coerce to string
         credit_limit = row.get("credit_limit")
 

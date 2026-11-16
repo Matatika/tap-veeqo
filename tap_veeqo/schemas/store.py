@@ -7,7 +7,7 @@ from singer_sdk import typing as th
 from tap_veeqo.schemas import NullType, WeightUnitProperty
 from tap_veeqo.schemas.warehouse import WarehouseObject
 
-_Api2CartChannelSpecficObject = th.PropertiesList(
+_Api2CartChannelSpecificObject = th.PropertiesList(
     th.Property("id", th.IntegerType),
     th.Property("url", th.URIType),
     th.Property("api2cart_store_key", th.StringType),
@@ -112,7 +112,7 @@ StoreObject = th.PropertiesList(
     th.Property("stock_level_update_requests", th.ArrayType(th.ObjectType())),
     th.Property("amazon_fulfillment_setting", NullType),
     th.Property("amazon_channel_specific", NullType),
-    th.Property("api2cart_channel_specific", _Api2CartChannelSpecficObject),
+    th.Property("api2cart_channel_specific", _Api2CartChannelSpecificObject),
     th.Property("additional_api2cart_site", NullType),
     th.Property("channel_warehouses", th.ArrayType(_ChannelWarehouseObject)),
     th.Property("channel_ranked_warehouses", th.ArrayType(_ChannelWarehouseObject)),

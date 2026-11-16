@@ -1,9 +1,16 @@
-[tool.poetry]
+[build-system]
+requires = [
+    "hatchling>=1,<2",
+    "hatch-vcs>=0.5",
+]
+build-backend = "hatchling.build"
+
+[project]
 name = "tap-veeqo"
-version = "0.3.2"
+dynamic = ["version"]
 description = "`tap-veeqo` is a Singer tap for Veeqo, built with the Meltano Singer SDK."
 readme = "README.md"
-authors = ["Reuben Frankel <rfrankel@matatika.com>"]
+authors = [{ name = "Reuben Frankel", email = "rfrankel@matatika.com" }]
 keywords = [
     "ELT",
     "Veeqo",
@@ -15,56 +22,130 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 license = "AGPL-3.0-only"
-packages = [
-    { include = "tap_veeqo" },
+license-files = [ "LICENSE" ]
+requires-python = ">=3.10"
+dependencies = [
+    "singer-sdk~=0.54.9",
+    "requests~=2.34.0",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-singer-sdk = ">=0.48.1,<0.55.0"
-fs-s3fs = { version = "^1.1.1", optional = true }
-requests = "^2.32.5"
+[project.optional-dependencies]
+s3 = [
+    "s3fs>=2026.1.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = ">=8.4.2,<10.0.0"
-singer-sdk = { version=">=0.48.1,<0.55.0", extras = ["testing"] }
+[project.scripts]
+# CLI declaration
+tap-veeqo = 'tap_veeqo.tap:TapVeeqo.cli'
 
-[tool.poetry.extras]
-s3 = ["fs-s3fs"]
+[dependency-groups]
+dev = [
+    { include-group = "test" },
+]
+test = [
+    "pytest>=9",
+    "pytest-github-actions-annotate-failures>=0.4",
+    "singer-sdk[testing]",
+]
+typing = [
+    "mypy>=2.1",
+    "ty>=0.0.41",
+]
+
+[tool.hatch.version]
+fallback-version = "0.1.0.dev0"
+source = "vcs"
 
 [tool.mypy]
-python_version = "3.11"
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "truthy-bool",
+]
+warn_redundant_casts = true
+warn_unreachable = true
 warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.ty.rules]
+missing-override-decorator = "error"
+unused-type-ignore-comment = "ignore"
+
+[tool.pytest]
+addopts = [
+    "-ra",
+]
+filterwarnings = [
+    "error",
+    "once:No records were available to test:UserWarning",
+    "once:Fields in transformed catalog but not in records:UserWarning",
+    "once:Python 3.* its end of life:FutureWarning",
+]
+log_level = "INFO"
+minversion = "9"
+strict = true
+testpaths = [
+    "tests",
+]
 
 [tool.ruff]
-src = ["tap_veeqo"]
-target-version = "py310"
+line-length = 100
+required-version = ">=0.16.0"
 
 [tool.ruff.lint]
+future-annotations = true
 ignore = [
     "ANN001",  # missing-type-function-argument
     "ANN201",  # missing-return-type-undocumented-public-function
-    "ANN202",  # missing-return-type-private-function
     "COM812",  # missing-trailing-comma
-    "ISC001",  # single-line-implicit-string-concatenation
 ]
 select = ["ALL"]
 
-[tool.ruff.flake8-annotations]
+[tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 
-[tool.ruff.isort]
-known-first-party = ["tap_veeqo"]
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",  # assert
+]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[build-system]
-requires = ["poetry-core==1.8.1"]
-build-backend = "poetry.core.masonry.api"
+# This configuration can be used to customize tox environments
+[tool.tox]
+requires = [
+    "tox>=4.53",
+    "tox-uv>=1.35",
+]
+env_list = [
+    "typing",
+    { prefix = "3.", start = 10 },
+]
 
-[tool.poetry.scripts]
-# CLI declaration
-tap-veeqo = 'tap_veeqo.tap:TapVeeqo.cli'
+[tool.tox.env_run_base]
+description = "run tests on Python {env_name}"
+runner = "uv-venv-lock-runner"
+pass_env = [
+    "CI",
+    "GITHUB_*",
+    "TAP_VEEQO_*",
+]
+dependency_groups = [ "test" ]
+commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
+
+[tool.tox.env.typing]
+description = "type checks"
+dependency_groups = [ "test", "typing" ]
+commands = [
+    [ "mypy", { replace = "posargs", default = [ "tap_veeqo", "tests" ], extend = true } ],
+    [ "ty", "check", { replace = "posargs", default = [ "tap_veeqo", "tests" ], extend = true } ],
+]
+
+[tool.typos.default.extend-words]
+# A field name in the Veeqo API
+mergable = "mergable"
