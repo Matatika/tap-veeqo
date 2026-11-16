@@ -2,11 +2,13 @@
 
 """Tests standard tap features using the built-in SDK tests library."""
 
+import typing as t
+
 from singer_sdk.testing import SuiteConfig, get_tap_test_class
 
 from tap_veeqo.tap import TapVeeqo
 
-SAMPLE_CONFIG = {}
+SAMPLE_CONFIG: dict[str, t.Any] = {}
 
 
 # Run standard built-in tap tests from the SDK:

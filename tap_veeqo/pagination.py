@@ -2,15 +2,19 @@
 
 """Pagination classes for tap-veeqo."""
 
-from singer_sdk.pagination import BasePageNumberPaginator
+from singer_sdk.pagination import PageNumberPaginator
 from typing_extensions import override
 
 
-class VeeqoPaginator(BasePageNumberPaginator):
+class VeeqoPaginator(PageNumberPaginator):
     """Base API paginator."""
 
-    @override
     def __init__(self, page_size: int) -> None:
+        """Create a new paginator.
+
+        Args:
+            page_size: Number of records in each page.
+        """
         super().__init__(1)
         self.page_size = page_size
 
